@@ -19,7 +19,7 @@ def hanoi_solver(n, b_origem, b_auxiliar, b_destino, nome_origem, nome_auxiliar,
         movimentos.append(f"Disco {x} - Origem: {nome_origem} -> Destino: {nome_destino}")
         hanoi_solver(n-1, b_auxiliar, b_origem, b_destino, nome_auxiliar, nome_origem, nome_destino)
 
-def executar_hanoi(max_blocos):
+def exec_hanoi(max_blocos):
     for n in range(1, max_blocos + 1):
         global movimentos, bloco_1, bloco_2, bloco_3
         movimentos = []
@@ -34,7 +34,7 @@ def executar_hanoi(max_blocos):
         fim = time.time()
 
         print(f"Total de movimentos: {len(movimentos)}")
-        print(f"Tempo total de execução: {fim - inicio:.6f} segundos\n")
+        print(f"Tempo total de execução: {fim - inicio} segundos\n")
         print("Movimentos:")
         for i in movimentos:
             print(i)
@@ -45,11 +45,11 @@ def executar_hanoi(max_blocos):
 
 # Configuração: número máximo de blocos
 max_blocos = 10
-executar_hanoi(max_blocos)
+exec_hanoi(max_blocos)
 
 num_blocos = [r[0] for r in resultados]
 num_movimentos = [r[1] for r in resultados]
-tempos_execucao = [r[2] for r in resultados]
+tempos_exec = [r[2] for r in resultados]
 
 
 plt.figure(figsize=(12, 6))
@@ -64,12 +64,14 @@ plt.legend()
 
 
 plt.subplot(1, 2, 2)
-plt.plot(num_blocos, tempos_execucao, marker='o', color='orange', label="Tempo de Execução")
+plt.plot(num_blocos, tempos_exec, marker='o', color='orange', label="Tempo de Execução")
 plt.title("Tempo de Execução por Quantidade de Blocos")
 plt.xlabel("Quantidade de Blocos")
 plt.ylabel("Tempo de Execução (segundos)")
 plt.grid(True)
 plt.legend()
 
+plt.tight_layout()
+plt.show()
 plt.tight_layout()
 plt.show()
